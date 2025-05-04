@@ -1,0 +1,18 @@
+<h2>Add New Todo</h2>
+<form (ngSubmit)="addTodo()">
+  <input
+    type="text"
+    [formControl]="todoControl"
+    placeholder="Enter todo text"
+  />
+  <button (click)="addTodo()"  [disabled]="todoControl.invalid">Add</button>
+
+  <div
+    *ngIf="todoControl.invalid && (todoControl.dirty || todoControl.touched)"
+  >
+    <div *ngIf="todoControl.errors?.['required']">Todo text is required.</div>
+    <div *ngIf="todoControl.errors?.['minlength']">
+      Todo text must be at least 3 characters long.
+    </div>
+  </div>
+</form>
